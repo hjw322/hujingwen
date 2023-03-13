@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="hjw">
+
+
+
+<meta name="description" content="此文章是本人初学JEE时的一些笔记。">
+<meta name="keywords" content="java,jee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JEE基础">
+<meta property="og:url" content="https://hjw322.top/JEE-basics/index.html">
+<meta property="og:site_name" content="Wen&#39;s Blog">
+<meta property="og:description" content="此文章是本人初学JEE时的一些笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://hjw322.top/image/jee/Servlet_method.png">
+<meta property="og:updated_time" content="2022-03-11T16:05:08.154Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JEE基础">
+<meta name="twitter:description" content="此文章是本人初学JEE时的一些笔记。">
+<meta name="twitter:image" content="https://hjw322.top/image/jee/Servlet_method.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Wen&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/zhandian.jpeg">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>JEE基础 | Wen&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=RA-5d55741c23097745"></script>
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?322aafcc80dfe81f8bfcf82be9ae26a0";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/IMG.jpeg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">hjw</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:he322@icloud.com" title="Email"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/jingwen.hu.52/" title="Facebook"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://user.qzone.qq.com/1186799517/main" title="QQ"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/career/">career</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jee/">jee</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win32/">win32</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">好好学习，天天向上</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">hjw</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/IMG.jpeg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">hjw</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:he322@icloud.com" title="Email"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa Facebook" target="_blank" href="https://www.facebook.com/jingwen.hu.52/" title="Facebook"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="https://user.qzone.qq.com/1186799517/main" title="QQ"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-JEE-basics" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/JEE-basics/" class="article-date">
+      <time datetime="2022-03-11T14:48:29.046Z" itemprop="datePublished">2022-03-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JEE基础
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jee/">jee</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>此文章是本人初学JEE时的一些笔记。</p>
+<a id="more"></a>
+
+
+
+<h2 id="企业版应用基础设施要求"><a href="#企业版应用基础设施要求" class="headerlink" title="企业版应用基础设施要求"></a>企业版应用基础设施要求</h2><ul>
+<li>用户身份验证</li>
+<li>多用户支持</li>
+<li>数据保存</li>
+<li>数据完整性</li>
+<li>客户端通信</li>
+<li>与其他应用程序通信</li>
+<li>服务定位援助</li>
+</ul>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>Servlets 是CGI编程的Java实现，在Web服务器上运行和动态生成网页的程序。</p>
+<img src="/image/jee/Servlet_method.png" width="600">
+
+<h3 id="初步使用"><a href="#初步使用" class="headerlink" title="初步使用"></a>初步使用</h3><p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    response.setContentType(<span class="string">"text/html"</span>); <span class="comment">//在输出流前设置content-type header</span></span><br><span class="line">	PrintWriter out = response.getWriter();</span><br><span class="line">    Enumeration parameterNames =  request.getParameterNames(); <span class="comment">//获得表单字段名枚举类对象</span></span><br><span class="line">    ···</span><br><span class="line">    <span class="keyword">while</span>(parameterNames.hasMoreElements()) &#123; <span class="comment">//判断是否还有元素</span></span><br><span class="line">        String parameterName = (String)parameterNames.nextElement();</span><br><span class="line">        out.println(parameterName); <span class="comment">//输出字段名</span></span><br><span class="line">        String[] paramValues = request.getParameterValues(parameterName); <span class="comment">//获得该字段的值数组</span></span><br><span class="line">        <span class="keyword">if</span> (paramValues.length == <span class="number">1</span>) &#123; <span class="comment">//判断是否只有一个值</span></span><br><span class="line">            ···</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ···</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; paramValues.length; i++) &#123;</span><br><span class="line">                ···</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ···</span><br><span class="line">    &#125;</span><br><span class="line">    ···</span><br><span class="line">    out.clase();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">	doGet(request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h3><p>每一个servlet有着同样的周期</p>
+<ol>
+<li><p>服务器加载和初始化servlet    </p>
+<ul>
+<li>要将特定的初始化添加到servlet，需要重写init方法</li>
+</ul>
+</li>
+<li><p>servlet处理0个或更多个客户端请求</p>
+</li>
+<li><p>服务器删除servlet（有些服务器只有当它们关闭的时候才做这一步）</p>
+</li>
+</ol>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>保存客户端的状态-会话跟踪。<br>会话是不同servlets访问客户端时共享的，可以方便多个servlet组成一个应用程序<br>如何使用会话跟踪</p>
+<ul>
+<li><p>从用户中得到一个会话（HttpSession对象）</p>
+<p><code>HttpSession session = request.getSession(true);</code></p>
+</li>
+<li><p>存储或者从HttpSession对象获取数据<br><code>session.setAttribute(name, value);</code><br><code>String value = (String)session.getAttribute(&quot;name&quot;); \\或者session.getValue(&quot;name&quot;)</code></p>
+<p><code>isNew()</code>方法可以判断这个会话是否是新创建的，是就返回true</p>
+</li>
+<li><p>让会话失效（可选）<br><code>session.invalidate();</code></p>
+</li>
+</ul>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>发送cookie - 实例化cookie<br>  javax.servlet.http.Cookie 类的构成含有一个具有初始名称和值的cookie，可以在更改cookie的its setValue 方法后更改它的值。<br>  Cookie 的名称必须是HTTP/1.1 token<br>  Tokens 是包含没有在RFC 2068中列出的特殊字符的字符串（字母数字字符串作为tokens）<br>  特殊字符是指：<code>&quot;(&quot;, &quot;)&quot;, &quot;&lt;&quot;, &quot;&quot;, &quot;@&quot;, &quot;,&quot;, &quot;;&quot;, &quot;:&quot;, &quot;\\&quot;, &quot;&gt;&quot;, &quot;/&quot;, &quot;[&quot;, &quot;|&quot;, &quot;]&quot;, &quot;?&quot;, &quot;=&quot;, &quot;{&quot;, &quot;}&quot;, SP, HT</code></p>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse res)</span> <span class="keyword">throws</span> ServletException, IOException</span>&#123;</span><br><span class="line">	String value = request.getParameter(<span class="string">"name"</span>);</span><br><span class="line">	<span class="keyword">if</span>(value != <span class="keyword">null</span>) &#123;</span><br><span class="line">		Cookie nameCookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, value);</span><br><span class="line">        response.setContentType(<span class="string">"text/html"</span>);</span><br><span class="line">        <span class="comment">//添加Cookie 可如下</span></span><br><span class="line">        <span class="comment">//response.addCookie(nameCookie);</span></span><br><span class="line">        PrintWriter out = response.getWriter();</span><br><span class="line">        ···</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookies[]; <span class="comment">//在另一个地方调用cookie值时</span></span><br><span class="line">cookies = request.getCookies(); <span class="comment">//获得Cookies数组</span></span><br><span class="line">String value = cookies[i].getValue(); <span class="comment">//获得Cookie值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="redirect-amp-forward"><a href="#redirect-amp-forward" class="headerlink" title="redirect&amp;forward"></a>redirect&amp;forward</h2><p>redirect 重定向</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doGet(request, response) &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">"www.baidu.com"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>forward 转发</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doGet(request, response) &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">"Account"</span>).forward(request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="jsp语法"><a href="#jsp语法" class="headerlink" title="jsp语法"></a>jsp语法</h2><p>&lt;% %&gt; ：此脚本将可java代码嵌入到html代码中<br>&lt;%@ page import=”*” %&gt; ：导入java包，相当于<code>import *;</code>  多个包时<code>&lt;%@ page import=&quot;*,*&quot; %&gt;</code><br>&lt;%@ page  %&gt; ：被称为指令Directives<br>                                错误处理指令例子：<code>&lt;%@ page errorPage=&quot;error.jsp&quot;%&gt;</code>(Login.jsp)，<code>&lt;%@ page isErrorPage=&quot;true&quot; %&gt;</code>(Error.jsp)<br>&lt;%@include file=”*.jsp” %&gt; ：（静态包含）页面包含指令（不经常更改的文件）<br>&lt;jsp:include page=”*.jsp” /&gt; ：（动态包含）<br>&lt;%= %&gt; ：被称为表达式Expression, <code>&lt;%=name %&gt;</code>相当于<code>out.print(name);</code><br>&lt;%! ···; %&gt; ： 声明的不会随着所在函数退出后被销毁</p>
+<p>例如：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">"java.util.*"</span> %&gt;</span><br><span class="line">&lt;%!</span><br><span class="line">	Date theDate = <span class="keyword">new</span> Date();</span><br><span class="line">	<span class="function">Date <span class="title">getDate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> theDate;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="javabean"><a href="#javabean" class="headerlink" title="javabean"></a>javabean</h2><ol>
+<li><p>检查HTML中的输入字段</p>
+</li>
+<li><p>编写一个类，包含字段属性、getter和setter方法，例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在jsp文件中添加相关代码<br>存储数据文件中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:useBean id = <span class="string">"user"</span> <span class="class"><span class="keyword">class</span> </span>= <span class="string">"*(包名).UserInfo"</span> scope = <span class="string">"session"</span> &gt;</span><br><span class="line">&lt;jsp:setProperty name = <span class="string">"user"</span> property = <span class="string">"*"</span> /&gt;</span><br><span class="line">&lt;/jsp:useBean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>引用数据文件中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:useBean id=<span class="string">"user"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"*.UserInfo"</span> scope=<span class="string">"session"</span>/&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        Name: &lt;jsp:getProperty name =<span class="string">"user"</span> property=<span class="string">"name"</span>/&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/JEE-basics/">JEE基础</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">hjw</a></p>
+        <p><span>发布时间:</span>2022-03-11, 22:48:29</p>
+        <p><span>最后更新:</span>2022-03-12, 00:05:08</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/JEE-basics/" title="JEE基础">https://hjw322.top/JEE-basics/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://hjw322.top/JEE-basics/　　作者: hjw" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/WriteProfessionalMail/">
+                    职业邮件撰写要点
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/win32-trap/">
+                    win32编程踩坑记录
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#企业版应用基础设施要求"><span class="toc-number">1.</span> <span class="toc-text">企业版应用基础设施要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet"><span class="toc-number">2.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步使用"><span class="toc-number">2.1.</span> <span class="toc-text">初步使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet生命周期"><span class="toc-number">2.2.</span> <span class="toc-text">Servlet生命周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session"><span class="toc-number">3.</span> <span class="toc-text">session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">4.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redirect-amp-forward"><span class="toc-number">5.</span> <span class="toc-text">redirect&amp;forward</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsp语法"><span class="toc-number">6.</span> <span class="toc-text">jsp语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#javabean"><span class="toc-number">7.</span> <span class="toc-text">javabean</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JEE基础　| Wen's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},
+                "share":{}
+            };
+            with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        </script>
+    
+
+    
+        <div class="addthis_sharing_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/WriteProfessionalMail/" title="上一篇: 职业邮件撰写要点">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/win32-trap/" title="下一篇: win32编程踩坑记录">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/WriteProfessionalMail/">职业邮件撰写要点</a></li><li class="post-list-item"><a class="post-list-link" href="/JEE-basics/">JEE基础</a></li><li class="post-list-item"><a class="post-list-link" href="/win32-trap/">win32编程踩坑记录</a></li><li class="post-list-item"><a class="post-list-link" href="/mac-hexo-server/">mac下将hexo搭建的博客迁移到服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/Markdown-summary/">Markdown总结</a></li><li class="post-list-item"><a class="post-list-link" href="/WhaleCTF WriteUp/">WhaleCTF WriteUp</a></li><li class="post-list-item"><a class="post-list-link" href="/【BugkuCTF】杂项writeup/">【BugkuCTF】杂项writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/mac-hexo-github-blog/">mac下使用hexo+github简单搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+            
+                    <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
+                    <i class="fa fa-copyright"></i> 
+                    2020-2023 hjw
+                    </p>
+            
+            </div>
+            <div class="footer-right">
+                <a href="http://beian.miit.gov.cn" target="_blank" style="display:inline-block;text-decoration:none;">
+                    <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">蜀ICP备20022131号</p>
+                </a> 
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51172402000108" target="_blank" style="display:inline-block;text-decoration:none;" >
+                    <img src="/image/备案图标.png" style="float:left;color: #939393;"/>
+                    <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备51172402000108号</p>
+                </a>
+            
+            </div>
+        </div>
+        
+    </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<span id="busuanzi_container_site_pv">
+    
+</span>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144093304-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
